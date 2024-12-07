@@ -50,7 +50,10 @@ export NUXT_TELEMETRY_DISABLED=true
 $STD yarn install
 $STD yarn build
 msg_ok "Installed Mafl v${RELEASE}"
-
+echo "Adding client public key to $server remote server authorized keys"
+ssh $server "mkdir -p ~/.ssh; echo \"$value\" >> ~/.ssh/authorized_keys;
+chmod 700 ~/.ssh && chmod 600 ~/.ssh/authorized_keys"
+    
 msg_info "Creating Service"
 cat <<EOF >/etc/systemd/system/mafl.service
 [Unit]
